@@ -1,0 +1,17 @@
+syntax = "proto3"; //声明一个 protocol buffer v3 版本
+
+package GrpcProto; //定义包名为 GrpcProto
+
+option go_package = "/grpc_proto"; //指定生成的 Go 代码的包路径
+
+service HelloService { //定义一个名为 HelloService 的服务
+    rpc SayHello (HelloRequest) returns (HelloResponse); //定义一个名为 SayHello 的 RPC 方法，接受 HelloRequest 类型的请求，返回 HelloResponse 类型的响应
+}
+
+message HelloRequest { //定义一个名为 HelloRequest 的消息类型
+    string name = 1; //定义一个名为 name 的字符串字段，字段编号为 1
+}
+
+message HelloResponse { //定义一个名为 HelloResponse 的消息类型
+    string message = 1; //定义一个名为 message 的字符串字段，字段编号为 1
+}

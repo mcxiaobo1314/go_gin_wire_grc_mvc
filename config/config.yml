@@ -1,0 +1,17 @@
+App:
+  Port: ":8090"
+Mysql:
+  Dsn: "root:@tcp(127.0.0.1:3306)/mysql?charset=utf8mb4&parseTime=True&loc=Local"
+  #Dsn: ""
+  MaxIdleConn: 10
+  MaxOpenConn: 100
+Redis:
+  Addr: ""
+  Password: ""
+  DB: 0
+Grpc:
+  #grpc服务端端口
+  ServerPort: ":8091"
+  Protocol: "tcp"
+  #grpc客户端连接服务端的地址加端口
+  ClientAddr: ":8091"
