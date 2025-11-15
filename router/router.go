@@ -1,23 +1,15 @@
 package router
 
 import (
-	"gin_gorm/controllers"
-	"gin_gorm/middlewares"
-
 	"github.com/gin-gonic/gin"
 	"github.com/google/wire"
 )
 
-var RouterProviderSet = wire.NewSet(NewRouter)
+var RouterProviderSet = wire.NewSet(NewRouter, AuthRouterProviderSet)
 
-func NewRouter(Auth *controllers.AuthController, DemoMiddleware *middlewares.DemoMiddleware) *gin.Engine {
+func NewRouter(AuthRouter *AuthRouter) *gin.Engine {
 	r := gin.Default()
-	auth := r.Group("/api/auth").Use(DemoMiddleware.Ac())
-	{
-		auth.GET("/test", Auth.Login)
-		auth.GET("/testv2/:id", Auth.Loginv2)
-	}
-
+	r = AuthRouter.InitRoutes(r)
 	return r
 
 }
